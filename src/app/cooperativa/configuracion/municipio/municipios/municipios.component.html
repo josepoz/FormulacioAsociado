@@ -1,0 +1,35 @@
+<div *ngIf="!cargando" class="card">
+    <i (click)="volver()" class="fas fa-arrow-alt-circle-left fa-2x"></i>
+    <div class="card-body">
+        <h4 class="text-center">MUNICIPIOS DE {{departamento}} </h4>
+        <button class="btn btn-success" type="button" (click)="open()">Agregar municipio</button>
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Municipio</th>
+                    <th>Comunidades</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let municipio of municipios.data; let i=index;">
+                        <td>{{municipio.codigo}} </td>
+                        <td>{{municipio.municipio}}</td>
+                        <td>
+                            <i (click)="goComunidades(municipio.id, municipio.municipio)" class="fas fa-list-ul"></i>
+                        </td>
+                        <td>
+                            <i (click)="open(municipio.id)" class="fas fa-pencil-alt"></i>
+                            <i (click)="deleteMunicipio(municipio.id, municipio.municipio)"
+                                class="fas fa-trash-alt" style="margin-left:20px"></i>
+                        </td> 
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-comunidades *ngIf="mostrando_comunidades" [pais_id]="pais_id" [departamento_id]="departamento_id" [municipio_id]="municipio_id"
+    [municipio]="municipio" (retorno)="showMunicipios()"></app-comunidades>

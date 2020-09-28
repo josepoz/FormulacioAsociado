@@ -1,0 +1,158 @@
+<!-- negocio Tab Form Starts -->
+<form #negocioForm="ngForm" class="editForm" novalidate>
+    <div>
+        <div class="tab-pane active">
+            <h4 class="head text-center">{{title}}</h4>
+            <br/>
+
+            <div class='row'>
+
+                <form #negociosForm="ngForm" class="container mt-3">
+
+                    <section *ngFor="let negocio of negocios; let i = index;">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="removeNegocio(i)">Eliminar negocio</button>
+                        <div class='col-12'>
+                            <div class="row">
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Nombre comercial</label>
+                                        <input #nombre_comercial="ngModel" [(ngModel)]="negocio.nombre_comercial" name="nombre_comercial_{{i}}" class="form-control input-md" required maxlength="100">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Actividad</label>
+                                        <input #actividad="ngModel" [(ngModel)]="negocio.principal_actividad_ec" name="actividad_{{i}}" class="form-control input-md" maxlength="100" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Fecha inscripcion</label>
+                                        <input #fecha_inscripcion="ngModel" name="fecha_inscripcion" [(ngModel)]="negocio.fecha_inscripcion" type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1" required id="fecha_inscripcion">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Numero de registro</label>
+                                        <input #numero_registro="ngModel" [(ngModel)]="negocio.numero_registro" name="numero_registro_{{i}}" class="form-control input-md" maxlength="15" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">folio</label>
+                                        <input #folio="ngModel" [(ngModel)]="negocio.folio" name="folio_{{i}}" class="form-control input-md" maxlength="15" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Libro</label>
+                                        <input #libro="ngModel" [(ngModel)]="negocio.libro" name="libro_{{i}}" class="form-control input-md" maxlength="15" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-8">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Direccion</label>
+                                        <input #direccion="ngModel" [(ngModel)]="negocio.direccion" name="direccion_{{i}}" class="form-control input-md" maxlength="45" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Pais</label>
+                                        <select #pais="ngModel" class="form-control" [(ngModel)]="negocio.pais_id" name="pais_{{i}}" (change)="getDepartamentos(negocio.pais_id)">
+                                <option *ngFor="let pais of paises" [value]="pais.id">
+                                    {{pais.pais}}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Departamento</label>
+                                        <select #departamento="ngModel" class="form-control" [(ngModel)]="negocio.departamento_id" name="departamento_{{i}}" (change)="getMunicipios(negocio.departamento_id)">
+                                <option *ngFor="let departamento of departamentos" [value]="departamento.id">
+                                    {{departamento.departamento}}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Municipio</label>
+                                        <select #municipio="ngModel" class="form-control" [(ngModel)]="negocio.municipio_id" name="municipio_{{i}}">
+                                <option *ngFor="let municipio of municipios" [value]="municipio.id">
+                                    {{municipio.municipio}}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Moneda</label>
+
+
+                                        <select #moneda="ngModel" class="form-control" [(ngModel)]="negocio.moneda_id" name="moneda_id_{{i}}">
+                                    <option *ngFor="let moneda of tipoMonedas" [value]="moneda.id">
+                                        {{moneda.moneda}}
+                                    </option>
+                                </select>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Monto</label>
+                                        <input #monto="ngModel" [(ngModel)]="negocio.monto" name="libro_{{i}}" class="form-control input-md" maxlength="15" type="text">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Telefono</label>
+                                        <input #telefono="ngModel" [(ngModel)]="negocio.telefono" name="telefono_{{i}}" class="form-control input-md" maxlength="15" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">NIT</label>
+                                        <input #nit="ngModel" [(ngModel)]="negocio.nit" name="nit_{{i}}" class="form-control input-md" maxlength="15" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <button (click)="addNegocio()">Agregar negocio</button>
+
+                </form>
+
+            </div>
+
+
+
+            <div class="form-group text-center space-20">
+                <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1" (click)="cancel()"> A tras</button>
+                <button uiSref="address" type="button" class="btn btn-raised btn-info" [disabled]="!negocioForm.valid" (click)="save(negocioForm)"> Siguiente </button>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- negocio Tab Form Ends -->

@@ -1,0 +1,132 @@
+<!-- Work Tab Form Starts -->
+<form #workForm="ngForm" class="editForm" novalidate>
+    <div>
+        <div class="tab-pane active">
+            <h4 class="head text-center">{{title}}</h4>
+            <br/>
+
+            <div class='row'>
+
+                <form #worksForm="ngForm" class="container mt-3">
+
+                    <section *ngFor="let work of works; let i = index;">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="removeEmpleo(i)">Eliminar empleo</button>
+                        <div class='col-12'>
+                            <div class="row">
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Sector</label>
+                                        <select class="form-control" #sector="ngModel" [(ngModel)]="work.sector_id" name="sector_{{i}}">
+                                <option *ngFor="let sector of sectores" [value]="sector.id">
+                                  {{sector.sector}}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Nombre del empleador</label>
+                                        <input #nombre="ngModel" [(ngModel)]="work.nombre_empleador" name="nombre_{{i}}" class="form-control input-md" required maxlength="100">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Actividad economica</label>
+                                        <input #actividad="ngModel" [(ngModel)]="work.actividad_ec" name="actividad_{{i}}" class="form-control input-md" maxlength="100" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Puesto</label>
+                                        <input #puesto="ngModel" [(ngModel)]="work.puesto" name="puesto_{{i}}" class="form-control input-md" maxlength="15" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-8">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Direccion</label>
+                                        <input #direccion="ngModel" [(ngModel)]="work.direccion" name="direccion_{{i}}" class="form-control input-md" maxlength="45" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Pais</label>
+                                        <select #pais="ngModel" class="form-control" [(ngModel)]="work.pais_id" name="pais_{{i}}" (change)="getDepartamentos(work.pais_id)">
+                                <option *ngFor="let pais of paises" [value]="pais.id">
+                                    {{pais.pais}}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Departamento</label>
+                                        <select #departamento="ngModel" class="form-control" [(ngModel)]="work.departamento_id" name="departamento_{{i}}" (change)="getMunicipios(work.departamento_id)">
+                                <option *ngFor="let departamento of departamentos" [value]="departamento.id">
+                                    {{departamento.departamento}}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Municipio</label>
+                                        <select #municipio="ngModel" class="form-control" [(ngModel)]="work.municipio_id" name="municipio_{{i}}">
+                                <option *ngFor="let municipio of municipios" [value]="municipio.id">
+                                    {{municipio.municipio}}
+                                </option>
+                            </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Moneda</label>
+
+                                        <select #moneda_id="ngModel" class="form-control" [(ngModel)]="work.moneda_id" name="moneda_id_{{i}}">
+                                            <option *ngFor="let moneda of tipoMonedas" [value]="moneda.id">
+                                                {{moneda.moneda}}
+                                            </option>
+                                        </select>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Monto</label>
+                                        <input #monto="ngModel" [(ngModel)]="work.monto" name="monto_{{i}}" class="form-control input-md" required maxlength="15" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <button (click)="addEmpleo()">Agregar empleo</button>
+
+                </form>
+
+            </div>
+
+
+
+            <div class="form-group text-center space-20">
+                <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1" (click)="cancel()"> A tras</button>
+                <button uiSref="address" type="button" class="btn btn-raised btn-info" [disabled]="!workForm.valid" (click)="save(workForm)"> Siguiente </button>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- Work Tab Form Ends -->

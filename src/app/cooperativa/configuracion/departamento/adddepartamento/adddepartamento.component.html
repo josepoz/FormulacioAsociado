@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 *ngIf="nuevo" class="modal-title">Nuevo departamento</h4>
+    <h4 *ngIf="!nuevo" class="modal-title">Actualizar departamento</h4>
+</div>
+<div  *ngIf="!cargando" class="modal-body">
+    <form [formGroup]="departamentoForm" method="POST" class="forms-sample ng-untouched ng-pristine ng-valid"
+        novalidate="">
+        <div *ngIf="nuevo" class="form-group">
+            <label>Codigo de departamento</label>
+            <input ng-disabled="!nuevo" formControlName="codigo" name="id" type="text"
+                class="form-control" placeholder="">
+            <small class="form-text text-danger"
+                *ngIf="!departamentoForm.get('codigo').valid && (departamentoForm.get('codigo').dirty || departamentoForm.get('codigo').touched)">Campo
+                incorrecto</small>
+        </div>
+
+        <div class="form-group">
+            <label>Departamento</label>
+            <input formControlName="departamento" [value]="this.departamentoForm.value.departamento | uppercase" name="departamento" type="text"
+                class="form-control" placeholder="">
+            <small class="form-text text-danger"
+                *ngIf="!departamentoForm.get('departamento').valid && (departamentoForm.get('departamento').dirty || departamentoForm.get('departamento').touched)">Campo
+                incorrecto</small>
+        </div>
+
+    </form>
+</div>
+<div *ngIf="!cargando" class="modal-footer">
+    <button (click)="validacionForm()" class="btn btn-success">
+        Guardar
+    </button>
+</div>

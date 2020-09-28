@@ -1,0 +1,26 @@
+<div *ngIf="!cargando" class="card">
+    <div class="card-body">
+        <h4 class="text-center">PROFESIONES</h4>
+        <button class="btn btn-success" type="button" (click)="openModal()">Agregar profesion</button>
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Departamento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let profesion of profesiones.data; let i=index;">
+                    <td>{{profesion.id}} </td>
+                    <td>{{profesion.profesion}}</td>
+                    <td>
+                        <i (click)="openModal(profesion.id)" class="fas fa-pencil-alt"></i>
+                        <i (click)="deleteProfesion(profesion.id, profesion.profesion)" class="fas fa-trash-alt" style="margin-left:20px"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

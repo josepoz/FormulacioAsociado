@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 *ngIf="nuevo" class="modal-title">Nuevo comunidad</h4>
+    <h4 *ngIf="!nuevo" class="modal-title">Actualizar comunidad</h4>
+</div>
+<div  *ngIf="!cargando" class="modal-body">
+    <form [formGroup]="comunidadForm" method="POST" class="forms-sample ng-untouched ng-pristine ng-valid"
+        novalidate="">
+        <div *ngIf="nuevo" class="form-group">
+            <label>Codigo de comunidad</label>
+            <input ng-disabled="!nuevo" formControlName="codigo" name="id" type="text"
+                class="form-control" placeholder="">
+            <small class="form-text text-danger"
+                *ngIf="!comunidadForm.get('codigo').valid && (comunidadForm.get('codigo').dirty || comunidadForm.get('codigo').touched)">Campo
+                incorrecto</small>
+        </div>
+
+        <div class="form-group">
+            <label>Comunidad</label>
+            <input formControlName="comunidad" [value]="this.comunidadForm.value.comunidad | uppercase" name="comunidad" type="text"
+                class="form-control" placeholder="">
+            <small class="form-text text-danger"
+                *ngIf="!comunidadForm.get('comunidad').valid && (comunidadForm.get('comunidad').dirty || comunidadForm.get('comunidad').touched)">Campo
+                incorrecto</small>
+        </div>
+
+    </form>
+</div>
+<div *ngIf="!cargando" class="modal-footer">
+    <button (click)="validacionForm()" class="btn btn-success">
+        Guardar
+    </button>
+</div>

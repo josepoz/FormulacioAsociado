@@ -1,0 +1,113 @@
+<!-- <i (click)="volver()" class="fas fa-arrow-alt-circle-left fa-2x"></i> -->
+<div *ngIf="!cargando" class="card">
+    <div class="card-body">
+        <h4 *ngIf="nuevo" class="text-center">NUEVA AGENCIA</h4>
+        <h4 *ngIf="!nuevo" class="text-center">ACTUALIZAR AGENCIA</h4>
+        <br>
+        <form [formGroup]="agenciaForm" class="forms-sample ng-untouched ng-pristine ng-valid">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Coperativa</label>
+                    <input formControlName="institucion" type="text" class="form-control">
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('institucion').valid && (agenciaForm.get('institucion').dirty || agenciaForm.get('institucion').touched)">Campo
+                        incorrecto</small>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Telefono</label>
+                    <input formControlName="telefono" type="text" class="form-control">
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('telefono').valid && (agenciaForm.get('telefono').dirty || agenciaForm.get('telefono').touched)">Campo
+                        incorrecto</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Razon social</label>
+                <input formControlName="razon_social" type="text" class="form-control">
+                <small class="form-text text-danger"
+                    *ngIf="!agenciaForm.get('razon_social').valid && (agenciaForm.get('razon_social').dirty || agenciaForm.get('razon_social').touched)">Campo
+                    incorrecto</small>
+            </div>
+
+            <div class="form-group">
+                <label>Direccion</label>
+                <input formControlName="direccion" type="text" class="form-control">
+                <small class="form-text text-danger"
+                    *ngIf="!agenciaForm.get('direccion').valid && (agenciaForm.get('direccion').dirty || agenciaForm.get('direccion').touched)">Campo
+                    incorrecto</small>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Agencia</label>
+                    <input formControlName="nombre_agencia" type="text" class="form-control">
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('nombre_agencia').valid && (agenciaForm.get('nombre_agencia').dirty || agenciaForm.get('nombre_agencia').touched)">Campo
+                        incorrecto</small>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Codigo de agencia</label>
+                    <input formControlName="codigo_agencia" type="text" class="form-control">
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('codigo_agencia').valid && (agenciaForm.get('codigo_agencia').dirty || agenciaForm.get('codigo_agencia').touched)">Campo
+                        incorrecto</small>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Codigo IVE</label>
+                    <input formControlName="codigo_ive" type="text" class="form-control">
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('codigo_ive').valid && (agenciaForm.get('codigo_ive').dirty || agenciaForm.get('codigo_ive').touched)">Campo
+                        incorrecto</small>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Pais</label>
+                    <select formControlName="pais_id" (change)="getDepartamentos()" class="form-control">
+                        <!-- <option  [selected]="index == 1">Seleccione</option> -->
+                        <option *ngFor="let p of paises?.data; let i=index;" [value]="p.id">
+                            {{p.pais}}
+                        </option>
+                    </select>
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('pais_id').valid && (agenciaForm.get('pais_id').dirty || agenciaForm.get('pais_id').touched)">Campo
+                        incorrecto</small>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Departamento</label>
+                    <select formControlName="departamento_id" (change)="getMunicipios()" class="form-control">
+                        <option *ngFor="let d of departamentos?.data; let i=index;" [value]="d.id">
+                            {{d.departamento}}
+                        </option>
+                    </select>
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('departamento_id').valid && (agenciaForm.get('departamento_id').dirty || agenciaForm.get('departamento_id').touched)">Campo
+                        incorrecto</small>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Municipio</label>
+                    <select formControlName="municipio_id" class="form-control">
+                        <option *ngFor="let m of municipios?.data; let i=index;" [value]="m.id">
+                            {{m.municipio}}
+                        </option>
+                    </select>
+                    <small class="form-text text-danger"
+                        *ngIf="!agenciaForm.get('municipio_id').valid && (agenciaForm.get('municipio_id').dirty || agenciaForm.get('municipio_id').touched)">Campo
+                        incorrecto</small>
+                </div>
+
+            </div>
+            <div class="bd-example">
+                <button (click)="volver()" type="button" class="btn btn-danger mr-2">Cancelar</button>
+                <button (click)="validacionForm()" type="button" class="btn btn-success mr-2">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

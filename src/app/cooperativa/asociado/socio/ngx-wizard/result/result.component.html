@@ -1,0 +1,69 @@
+<!-- Result tab Form starts -->
+<div class="tab-pane active">
+    <h3 class="head text-center">{{title}}</h3>
+
+    <div class='row'>
+        <form #negociosForm="ngForm" class="container mt-3">
+
+            <section *ngFor="let ingreso of ingresos; let i = index;">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeIngreso(i)">Eliminar Ingreso</button>
+                <div class='col-12'>
+                    <div class="row">
+                        <div class="col-12 col-sm-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Tipo ingreso</label>
+                                <select #tipo_ingreso_id="ngModel" class="form-control" [(ngModel)]="ingreso.tipo_ingreso_id" name="ingreso_{{i}}">
+                                <option *ngFor="let ingreso of tipoIngresos" [value]="ingreso.id">
+                                    {{ingreso.tipo_ingreso}}
+                                </option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Detalle</label>
+                                <input #detalle="ngModel" [(ngModel)]="ingreso.detalle" name="detalle_{{i}}" class="form-control input-md" required maxlength="100">
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Moneda</label>
+
+                                <select #moneda_id="ngModel" class="form-control" [(ngModel)]="ingreso.moneda_id" name="moneda_id_{{i}}">
+                                    <option *ngFor="let moneda of tipoMonedas" [value]="moneda.id">
+                                        {{moneda.moneda}}
+                                    </option>
+                                </select>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                            <div class="form-group">
+                                <label class="form-control-label">Monto</label>
+                                <input #monto="ngModel" [(ngModel)]="ingreso.monto" name="monto_{{i}}" class="form-control input-md" required maxlength="15" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <button (click)="addIngreso()">Agregar Ingreso</button>
+
+        </form>
+
+    </div>
+
+
+
+    <div class="text-center">
+        <button class="btn btn-success btn-raised" (click)="guardarSocio(negociosForm)"> Guardar Socio <span style="margin-left:10px;"><i class="ft-chevron-right"></i></span></button>
+    </div>
+</div>
+<!-- Result tab Form ends -->

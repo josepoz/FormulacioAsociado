@@ -1,0 +1,28 @@
+<div *ngIf="!cargando" class="card">
+    <i (click)="volver()" class="fas fa-arrow-alt-circle-left fa-2x"></i>
+    <div class="card-body">
+        <h4 class="text-center">COMUNIDADES DE {{municipio}} </h4>
+        <button class="btn btn-success" type="button" (click)="open()">Agregar comunidad</button>
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Comunidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let comunidad of comunidades.data; let i=index;">
+                        <td>{{comunidad.codigo}} </td>
+                        <td>{{comunidad.comunidad}}</td>
+                        <td>
+                            <i (click)="open(comunidad.id)" class="fas fa-pencil-alt"></i>
+                            <i (click)="deleteComunidad(comunidad.id, comunidad.municipio)"
+                                class="fas fa-trash-alt" style="margin-left:20px"></i>
+                        </td> 
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

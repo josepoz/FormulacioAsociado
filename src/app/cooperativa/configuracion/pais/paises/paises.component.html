@@ -1,0 +1,31 @@
+<div *ngIf="!cargando; tablePaises" class="card">
+    <div class="card-body">
+        <h4 class="text-center">PAISES</h4>
+        <button class="btn btn-success" type="button" (click)="open(content2)">Agregar pais</button>
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Pais</th>
+                    <th>Departamentos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of paises.data; let i=index;">
+                    <td>{{p.id}} </td>
+                    <td>{{p.pais}}</td>
+                    <td>
+                        <i (click)="showDep(p.id)" class="fas fa-list-ul" style="margin-left:20px"></i>
+                    </td>
+                    <td>
+                        <i (click)="open(p.id)" class="fas fa-pencil-alt"></i>
+                        <i (click)="deletePais(p.id)" class="fas fa-trash-alt" style="margin-left:20px"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<app-departamentos *ngIf="!tablePaises" [pais_id]="selectId" (volver_paises)="showPais()"></app-departamentos>

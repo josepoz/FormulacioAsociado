@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 *ngIf="nuevo" class="modal-title">Nuevo grado de escolaridad</h4>
+    <h4 *ngIf="!nuevo" class="modal-title">Actualizar grado de escolaridad</h4>
+</div>
+<div  *ngIf="!cargando" class="modal-body">
+    <form [formGroup]="escolaridadForm" method="POST" class="forms-sample ng-untouched ng-pristine ng-valid"
+        novalidate="">
+        <div class="form-group">
+            <label>Profesion</label>
+            <input ng-disabled="!nuevo" formControlName="grado" [value]="this.escolaridadForm.value.grado | uppercase" name="id" type="text"
+                class="form-control" placeholder="">
+            <small class="form-text text-danger"
+                *ngIf="!escolaridadForm.get('grado').valid && (escolaridadForm.get('grado').dirty || escolaridadForm.get('grado').touched)">Compo
+                incorrecto</small>
+        </div>
+    </form>
+</div>
+<div *ngIf="!cargando" class="modal-footer">
+    <button (click)="validacionForm()" class="btn btn-success">
+        Guardar
+    </button>
+</div>

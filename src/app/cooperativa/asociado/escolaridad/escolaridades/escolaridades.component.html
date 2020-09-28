@@ -1,0 +1,26 @@
+<div *ngIf="!cargando" class="card">
+    <div class="card-body">
+        <h4 class="text-center">GRADOS DE ESCOLARIDAD</h4>
+        <button class="btn btn-success" type="button" (click)="openModal()">Agregar escolaridad</button>
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Escolarida</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let grado of grados.data; let i=index;">
+                    <td>{{grado.id}} </td>
+                    <td>{{grado.grado}}</td>
+                    <td>
+                        <i (click)="openModal(grado.id)" class="fas fa-pencil-alt"></i>
+                        <i (click)="deleteGrado(grado.id, grado.grado)" class="fas fa-trash-alt" style="margin-left:20px"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

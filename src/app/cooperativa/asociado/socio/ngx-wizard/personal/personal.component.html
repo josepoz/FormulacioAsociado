@@ -1,0 +1,382 @@
+<!-- Personal Tab Form Starts -->
+<form #personalForm="ngForm" class="editForm" novalidate>
+    <div class="tab-pane active">
+        <h4 class="head text-center">{{title}}</h4>
+        <br />
+        <div class='row'>
+            <div class='col-12'>
+                <div class="row">
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" #actua="ngModel" id="actua" name="actua" [(ngModel)]="personal.actua">
+                                <label class="form-check-label">
+                                    Actua en nombre propio?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" #mancomunado="ngModel" id="mancomunado" name="mancomunado" [(ngModel)]="personal.mancomunado">
+                                <label class="form-check-label">
+                                    Socio mancomunado?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" #menor_id="ngModel" id="menor_id" name="menor_id" [(ngModel)]="personal.menor_edad">
+                                <label class="form-check-label">
+                                    Es menor de edad?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Primer nombre</label>
+                            <input class="form-control input-md" #nombre_1="ngModel" required maxlength="15" id="nombre_1" name="nombre_1" type="text" [(ngModel)]="personal.nombre_1">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Segundo nombre</label>
+                            <input class="form-control input-md" #nombre_2="ngModel" id="nombre_2" maxlength="15" name="nombre_2" type="text" [(ngModel)]="personal.nombre_2">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Otros nombres</label>
+                            <input class="form-control input-md" #nombre_3="ngModel" id="nombre_3" maxlength="15" name="nombre_3" type="text" [(ngModel)]="personal.nombre_3">
+                        </div>
+                    </div>
+                    <!--  Segunda fila -->
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Primer apellido</label>
+                            <input class="form-control input-md" #apellido_1="ngModel" required maxlength="15" id="apellido_1" name="apellido_1" type="text" [(ngModel)]="personal.apellido_1">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Segundo apellido</label>
+                            <input class="form-control input-md" #apellido_2="ngModel" maxlength="15" id="apellido_2" name="apellido_2" type="text" [(ngModel)]="personal.apellido_2">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Apellido de casada</label>
+                            <input class="form-control input-md" #apellido_casado="ngModel" maxlength="15" id="apellido_casado" name="apellido_casado" type="text" [(ngModel)]="personal.apellido_casado">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Nacionalidad</label>
+                            <select class="form-control" #nacionalidad_id="ngModel" required id="nacionalidad_id" name="nacionalidad_id" [(ngModel)]="personal.nacionalidad_id">
+                                <option *ngFor="let p of paises?.data; let i=index;" [value]="p.id">
+                                    {{p.pais}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Condicion Migratoria</label>
+                            <select class="form-control" #condicion_id="ngModel" id="condicion_id" name="condicion_id" [(ngModel)]="personal.condicion_id">
+                                <option *ngFor="let c of condiciones?.data; let i=index;" [value]="c.id">
+                                    {{c.condicion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Otra condicion migratoria</label>
+                            <input class="form-control input-md" #especifica_condicion="ngModel" maxlength="15" id="especifica_condicion" name="especifica_condicion" type="text" [(ngModel)]="personal.especifica_condicion">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Documento de Identificaion</label>
+                            <select class="form-control" #identificacion_id="ngModel" id="identificacion_id" required name="identificacion_id" [(ngModel)]="personal.identificacion_id">
+                                <option *ngFor="let i of identificaciones" [value]="i.id">
+                                    {{i.identificacion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Numero de Identificacion</label>
+                            <input class="form-control input-md" #numero_identificacion="ngModel" maxlength="15" required id="numero_identificacion" name="numero_identificacion" type="text" [(ngModel)]="personal.numero_identificacion">
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Pais de emision</label>
+                            <select class="form-control" #e_pais_id="ngModel" required id="e_pais_id" name="e_pais_id" [(ngModel)]="personal.e_pais_id">
+                                <option *ngFor="let p of paises?.data; let i=index;" [value]="p.id">
+                                    {{p.pais}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Genero</label>
+                            <select class="form-control" #genero="ngModel" required id="genero" name="genero" [(ngModel)]="personal.genero">
+                                <option [value]="'M'">MASCULINO</option>
+                                <option [value]="'F'">FEMENINO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Estado civil</label>
+                            <select class="form-control" #estado="ngModel" required id="estado" name="estado" [(ngModel)]="personal.estado">
+                                <option [value]="'CASADO (A)'">CASADO (A)</option>
+                                <option [value]="'SOLTERO (A)'">SOLTERO (A)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Profesion</label>
+                            <select class="form-control" #profesion_id="ngModel" required id="profesion_id" name="profesion_id" [(ngModel)]="personal.profesion_id">
+                                <option *ngFor="let p of profesiones?.data; let i=index;" [value]="p.id">
+                                    {{p.profesion}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Escolaridad</label>
+                            <select class="form-control" #grado_id="ngModel" required id="grado_id" name="grado_id" [(ngModel)]="personal.grado_id">
+                                <option *ngFor="let g of grados?.data; let i=index;" [value]="g.id">
+                                    {{g.grado}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Fecha nacimiento</label>
+                            <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1" #fecha_nacimiento="ngModel" required id="fecha_nacimiento" name="fecha_nacimiento" [(ngModel)]="personal.fecha_nacimiento">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Fecha deceso</label>
+                            <input type="date" class="form-control" aria-label="Username" aria-describedby="basic-addon1" #fecha_fallecimiento="ngModel" id="fecha_fallecimiento" name="fecha_fallecimiento" [(ngModel)]="personal.fecha_fallecimiento">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-8">
+                        <div class="form-group">
+                            <label class="form-control-label">Lugar de Nacimiento</label>
+                            <input class="form-control input-md" #lugar_nacimiento="ngModel" required maxlength="75" id="lugar_nacimiento" name="lugar_nacimiento" [(ngModel)]="personal.lugar_nacimiento">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Pais de nacimiento</label>
+                            <select class="form-control" #n_pais_id="ngModel" required id="n_pais_id" name="n_pais_id" (change)="getDepartamentos()" [(ngModel)]="personal.n_pais_id">
+                                <option *ngFor="let p of paises?.data; let i=index;" [value]="p.id">
+                                    {{p.pais}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Departamento</label>
+                            <select class="form-control" #n_departamento_id="ngModel" required id="n_departamento_id" (change)="getMunicipios()" name="n_departamento_id" [(ngModel)]="personal.n_departamento_id">
+                                <option *ngFor="let d of departamentos?.data; let i=index;" [value]="d.id">
+                                    {{d.departamento}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Municipio</label>
+                            <select class="form-control" #n_municipio_id="ngModel" required id="n_municipio_id" (change)="getComunidades()" name="n_municipio_id" [(ngModel)]="personal.n_municipio_id">
+                                <option *ngFor="let m of municipios?.data; let i=index;" [value]="m.id">
+                                    {{m.municipio}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Comunidad</label>
+                            <select class="form-control" #n_comunidad_id="ngModel" id="n_comunidad_id" name="n_comunidad_id" [(ngModel)]="personal.n_comunidad_id">
+                                <option *ngFor="let c of comunidades?.data; let i=index;" [value]="c.id">
+                                    {{c.comunidad}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-sm-8">
+                        <div class="form-group">
+                            <label class="form-control-label">Direccion</label>
+                            <input class="form-control input-md" #direccion="ngModel" required maxlength="100" id="direccion" name="direccion" [(ngModel)]="personal.direccion">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Pais</label>
+                            <select class="form-control" #d_pais_id="ngModel" required id="d_pais_id" name="d_pais_id" (change)="get_d_Departamentos()" [(ngModel)]="personal.d_pais_id">
+                                <option *ngFor="let p of paises?.data; let i=index;" [value]="p.id">
+                                    {{p.pais}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Departamento</label>
+                            <select class="form-control" #d_departamento_id="ngModel" required id="d_departamento_id" (change)="get_d_Municipios()" name="d_departamento_id" [(ngModel)]="personal.d_departamento_id">
+                                <option *ngFor="let d of d_departamentos?.data; let i=index;" [value]="d.id">
+                                    {{d.departamento}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Municipio</label>
+                            <select class="form-control" #d_municipio_id="ngModel" required id="d_municipio_id" (change)="get_d_Comunidades()" name="d_municipio_id" [(ngModel)]="personal.d_municipio_id">
+                                <option *ngFor="let m of d_municipios?.data; let i=index;" [value]="m.id">
+                                    {{m.municipio}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Comunidad</label>
+                            <select class="form-control" #d_comunidad_id="ngModel" id="d_comunidad_id" name="d_comunidad_id" [(ngModel)]="personal.d_comunidad_id">
+                                <option *ngFor="let c of d_comunidades?.data; let i=index;" [value]="c.id">
+                                    {{c.comunidad}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Grupo Etnico</label>
+                            <select class="form-control" #etnia="ngModel" required id="etnia" name="etnia" [(ngModel)]="personal.etnia">
+                                <option [value]="'INDIGENA'">INDIGENA</option>
+                                <option [value]="'NO INDIGENA'">NO INDIGENA</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">NIT</label>
+                            <input class="form-control input-md" #nit="ngModel" maxlength="15" id="nit" name="nit" type="text" [(ngModel)]="personal.nit">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Correo</label>
+                            <input class="form-control input-md" #correo="ngModel" maxlength="15" id="correo" name="correo" type="text" [(ngModel)]="personal.correo">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Telefono domiciliar</label>
+                            <input class="form-control input-md" #telefono="ngModel" maxlength="12" id="telefono" name="telefono" type="text" [(ngModel)]="personal.telefono">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Telefono movil 1</label>
+                            <input class="form-control input-md" #celular1="ngModel" maxlength="12" id="celular1" name="celular1" type="text" [(ngModel)]="personal.celular1">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Telefono movil 2</label>
+                            <input class="form-control input-md" #celular2="ngModel" maxlength="12" id="celular2" name="celular2" type="text" [(ngModel)]="personal.celular2">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" #espep="ngModel" id="espep" name="espep" [(ngModel)]="personal.espep">
+                                <label class="form-check-label">
+                                    Es PEP?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" #escpe="ngModel" id="escpe" name="escpe" [(ngModel)]="personal.escpe">
+                                <label class="form-check-label">
+                                    Es CPE?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" uiSref="work" class="btn btn-success btn-raised" [disabled]="!personalForm.valid" (click)="save(personalForm)"> Next </button>
+                </div>
+                <button (click)="tmp()">Avance</button>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- Personal Tab Form Ends -->

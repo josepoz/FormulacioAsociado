@@ -1,0 +1,28 @@
+<div *ngIf="!cargando" class="card">
+    <div class="card-body">
+        <h4 class="text-center">AGENCIAS</h4>
+        <button class="btn btn-success" type="button" (click)="open()">Agregar agencia</button>
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo Agencia</th>
+                    <th>Agencia</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let agencia of agencias.data; let i=index;">
+                    <td>{{agencia.codigo_agencia}}</td>
+                    <td>{{agencia.nombre_agencia}} </td>
+                    <td>
+                        <i (click)="open(agencia.id)" class="fas fa-pencil-alt"></i>
+                        <i (click)="deleteAgencia(agencia.id, agencia.nombre_agencia)" class="fas fa-trash-alt" style="margin-left:20px"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-add-agencia *ngIf="viewFormAgencia" [agencia_id]="agencia_id" [nuevo]="nuevo" (retorno)="showAgencias()"></app-add-agencia>

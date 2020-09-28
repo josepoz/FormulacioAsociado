@@ -1,0 +1,63 @@
+<div class="card">
+    <h4>Buscar socio</h4>
+    <div [formGroup]="searchForm" class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Primer nombre</label>
+                <input formControlName="nombre_1" (ngModelChange)="searchSocio()" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Segundo nombre</label>
+                <input formControlName="nombre_2" (ngModelChange)="searchSocio()" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Otros nombres</label>
+                <input formControlName="nombre_3" (ngModelChange)="searchSocio()" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Primer apellido</label>
+                <input formControlName="apellido_1" (ngModelChange)="searchSocio()" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Segundo apellido</label>
+                <input formControlName="apellido_2" (ngModelChange)="searchSocio()" type="text" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Apellido de casada</label>
+                <input formControlName="apellido_casado" (ngModelChange)="searchSocio()" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>No. de Identificacion</label>
+                <input formControlName="numero_identificacion" (ngModelChange)="searchSocio()" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Socio</th>
+                            <th>No. Identificacion</th>
+                            <th>Genero</th>
+                            <th>Mancomunado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let socio of socios.data; let i=index;" (click)="retorno(socio.id)">
+                            <td>{{ socio.id }} </td>
+                            <td>{{ socio.nombre_completo }}</td>
+                            <td>{{ socio.numero_identificacion }}</td>
+                            <td>{{ socio.genero }} </td>
+                            <td>{{ socio.mancomunado}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
